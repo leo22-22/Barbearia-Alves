@@ -14,10 +14,6 @@ function enviarAgendamento(horario) {
 
 
 function redirigirParaAgendamento(event) {
-    event.preventDefault(); // Impede o envio tradicional do formulário
-
-    // AQUI: Você pode adicionar validação de campos antes de redirecionar, se necessário
-
-    // Redireciona para a página de agendamento após o cadastro
+    event.preventDefault(); 
     window.location.href = "home.html";
 }
