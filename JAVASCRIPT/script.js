@@ -4,7 +4,7 @@ function redirigirParaAgendamento(event) {
     // AQUI: Você pode adicionar validação de campos antes de redirecionar, se necessário
 
     // Redireciona para a página de agendamento após o cadastro
-    window.location.href = "./HTML/home.html";
+    window.location.href = "/HTML/home.html";
 }
 
 // Função que envia um agendamento via WhatsApp
