@@ -4,7 +4,7 @@ function redirigirParaAgendamento(event) {
     // AQUI: Você pode adicionar validação de campos antes de redirecionar, se necessário
 
     // Redireciona para a página de agendamento após o cadastro
-    window.location.href = "./HTML/home.html";
+    window.location.href = "../HTML/home.html";
 }
 
 // Função que envia um agendamento via WhatsApp
@@ -69,48 +69,51 @@ function atualizarHora() {
 // Ao carregar a página, define a data mínima e atualiza os horários indisponíveis
 document.addEventListener("DOMContentLoaded", function () {
     const hoje = new Date().toISOString().split("T")[0];
-    document.getElementById("calendario").setAttribute("min", hoje);
-    atualizarHora();
-});
+    const calendario = document.getElementById("calendario");
+    if (calendario) {
+        calendario.setAttribute("min", hoje);
+        atualizarHora();
 
-// Atualiza os horários disponíveis conforme o dia selecionado no calendário
-document.getElementById("calendario").addEventListener("change", function () {
-    atualizarHora();
+        // Adicionar o evento change ao calendário
+        calendario.addEventListener("change", function () {
+            atualizarHora();
 
-    const dataSelecionada = new Date(this.value);
-    const diaDaSemana = dataSelecionada.getDay();
-    const botoes = document.querySelectorAll(".horarios button");
-    const containerHorarios = document.querySelector(".horarios");
+            const dataSelecionada = new Date(this.value);
+            const diaDaSemana = dataSelecionada.getDay();
+            const botoes = document.querySelectorAll(".horarios button");
+            const containerHorarios = document.querySelector(".horarios");
 
-    // Remove qualquer mensagem de "sem horários disponíveis"
-    const msgExistente = document.getElementById("mensagem-horario");
-    if (msgExistente) msgExistente.remove();
+            // Remove qualquer mensagem de "sem horários disponíveis"
+            const msgExistente = document.getElementById("mensagem-horario");
+            if (msgExistente) msgExistente.remove();
 
-    // Reseta visibilidade dos botões
-    botoes.forEach(botao => {
-        botao.style.display = "inline-block";
-        botao.disabled = false;
-    });
+            // Reseta visibilidade dos botões
+            botoes.forEach(botao => {
+                botao.style.display = "inline-block";
+                botao.disabled = false;
+            });
 
-    if (diaDaSemana === 6 || diaDaSemana === 0) { // Domingo ou Segunda
-        botoes.forEach(botao => botao.style.display = "none");
+            if (diaDaSemana === 6 || diaDaSemana === 0) { // Domingo ou Segunda
+                botoes.forEach(botao => botao.style.display = "none");
 
-        // Exibe mensagem de indisponibilidade
-        const mensagem = document.createElement("p");
-        mensagem.id = "mensagem-horario";
-        mensagem.textContent = "Não há horários disponíveis neste dia.";
-        mensagem.style.color = "red";
-        mensagem.style.fontWeight = "bold";
-        mensagem.style.textAlign = "center";
-        containerHorarios.appendChild(mensagem);
-    } else if (diaDaSemana === 5) { // Sábado (09:00 - 14:00)
-        botoes.forEach(botao => {
-            const horario = botao.textContent;
-            if (!["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"].includes(horario)) {
-                botao.style.display = "none";
+                // Exibe mensagem de indisponibilidade
+                const mensagem = document.createElement("p");
+                mensagem.id = "mensagem-horario";
+                mensagem.textContent = "Não há horários disponíveis neste dia.";
+                mensagem.style.color = "red";
+                mensagem.style.fontWeight = "bold";
+                mensagem.style.textAlign = "center";
+                containerHorarios.appendChild(mensagem);
+            } else if (diaDaSemana === 5) { // Sábado (09:00 - 14:00)
+                botoes.forEach(botao => {
+                    const horario = botao.textContent;
+                    if (!["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00", "13:30", "14:00"].includes(horario)) {
+                        botao.style.display = "none";
+                    }
+                });
             }
+
+            atualizarHora();
         });
     }
-
-    atualizarHora();
 });
