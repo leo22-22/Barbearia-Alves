@@ -1,13 +1,14 @@
 # Barbearia Alves
 
-## Configuração do Banco de Dados
+<br><h1>Site feito por mim Leonardo Picolo dos Santos Ranuci
+<br><p>Linguagens utilizadas:</p>
+<br>
+<h1>[HTML]</h1>
 
-`barbearia_alves`.
- tabela `table_ba` com as seguintes colunas:
-   - `id` INT AUTO_INCREMENT PRIMARY KEY
-   - `nome` VARCHAR(100) NOT NULL
-   - `email` VARCHAR(320) NOT NULL UNIQUE
-   - `telefone` VARCHAR(20) NOT NULL UNIQUE
-   - `senha` VARCHAR(8) NOT NULL
+<h1>[CSS]</h1>
 
+<h1>[JAVASCRIPT]</h1>
 
+<h1>[PHP]</h1>
+<br><p>Foi utilizado também Banco de Dados.</p>
+<h1>Entre em contato comigo por (18)981113802 ou leonardoranuci17@gmail.com</h1>
